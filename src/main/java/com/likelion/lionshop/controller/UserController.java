@@ -14,10 +14,10 @@ public class UserController {
     // 이때 log.info를 이용하여 사용자의 이름, 주소, ID, PW를 출력해줍니다. return 값은 "사용자 생성"입니다.
     @PostMapping
     public String createUser(CreateUserRequestDto createUserRequestDto) {
-        log.info("이름: {}", createUserRequestDto.name);
-        log.info("주소: {}", createUserRequestDto.address);
-        log.info("ID: {}", createUserRequestDto.id);
-        log.info("PW: {}", createUserRequestDto.password);
+        log.info("이름: {}", createUserRequestDto.getName());
+        log.info("주소: {}", createUserRequestDto.getAddress());
+        log.info("ID: {}", createUserRequestDto.getId());
+        log.info("PW: {}", createUserRequestDto.getPassword());
 
         return "사용자 생성";
     }
@@ -37,8 +37,8 @@ public class UserController {
     //UpdateUserRequestDto 클래스를 매개변수로 받습니다.
     @PutMapping()
     public String updateUser(UpdateUserRequestDto updateUserRequestDto) {
-        log.info("이름: {}", updateUserRequestDto.name);
-        log.info("주소: {}", updateUserRequestDto.address);
+        log.info("이름: {}", updateUserRequestDto.getName());
+        log.info("주소: {}", updateUserRequestDto.getAddress());
 
         return "사용자 수정";
     }

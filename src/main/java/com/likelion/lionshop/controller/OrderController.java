@@ -14,7 +14,6 @@ public class OrderController {
     //CreateOrderRequestDto 클래스를 매개변수로 받습니다.
     @PostMapping()
     public String createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
-
         return "주문 생성하기";
     }
 
