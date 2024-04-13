@@ -1,4 +1,4 @@
-package com.likelion.lionshop.dto;
+package com.likelion.lionshop.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
