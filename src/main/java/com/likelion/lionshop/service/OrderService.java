@@ -4,19 +4,21 @@ import com.likelion.lionshop.dto.request.CreateOrderRequestDto;
 import com.likelion.lionshop.dto.request.UpdateOrderRequestDto;
 import com.likelion.lionshop.dto.response.OrderResponseDto;
 import com.likelion.lionshop.entity.Order;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
+@Slf4j
 public class OrderService {
 
-    public void createOrder(CreateOrderRequestDto createOrderRequestDto) {
-        Order order = Order.builder()
-                .id("lionking")
-                .name(createOrderRequestDto.name)
-                .price(createOrderRequestDto.price)
-                .quantity(createOrderRequestDto.quantity)
-                .build();
+    public void createOrder(List<CreateOrderRequestDto> createOrderRequestDto) {
+       createOrderRequestDto.forEach(orderRequestDto -> {
+           log.info("[ Oder Service ] 주문 생성 이름 --->{}", orderRequestDto.getName());
 
+           Order order = orderRequestDto.toEntity();
+       });
         // repository를 사용하여 db에 저장
     }
 
@@ -29,7 +31,7 @@ public class OrderService {
     public void updateOrder(UpdateOrderRequestDto updateOrderRequestDto) {
         // repository를 사용하여 조회해서 Order Entiity 받아오기
         Order order = null;
-        order.update(updateOrderRequestDto.name, updateOrderRequestDto.quantity, updateOrderRequestDto.price);
+        order.update(updateOrderRequestDto.getName(), updateOrderRequestDto.getQuantity(), updateOrderRequestDto.getPrice());
     }
 
     public void deleteOrder(int id) {

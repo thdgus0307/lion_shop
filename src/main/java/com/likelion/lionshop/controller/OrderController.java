@@ -3,12 +3,12 @@ package com.likelion.lionshop.controller;
 import com.likelion.lionshop.dto.request.CreateOrderRequestDto;
 import com.likelion.lionshop.dto.request.UpdateOrderRequestDto;
 import com.likelion.lionshop.dto.response.OrderResponseDto;
-import com.likelion.lionshop.entity.Order;
 import com.likelion.lionshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j //로그 출력을 도와주는 어노테이션
 @RestController
@@ -21,8 +21,8 @@ public class OrderController {
     // 1. 주문을 생성하는 컨트롤러를 만듭니다. 이때 return 값은 "주문 생성하기"입니다. -> 주문은 리스트 형태로 요청을 보내주세요!
     //CreateOrderRequestDto 클래스를 매개변수로 받습니다.
     @PostMapping()
-    public String createOrder(@RequestBody CreateOrderRequestDto createOrderRequestDto) {
-        orderService.createOrder(createOrderRequestDto);
+    public String createOrder(@RequestBody List<CreateOrderRequestDto> orderRequestDto) {
+        orderService.createOrder(orderRequestDto);
         return "주문 생성하기";
     }
 

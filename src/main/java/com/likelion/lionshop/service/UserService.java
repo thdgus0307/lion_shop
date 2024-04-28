@@ -15,15 +15,15 @@ public class UserService {
 
     public void createUser(CreateUserRequestDto createUserRequestDto){
         User user = User.builder()
-                .id("lionking")
-                .name(createUserRequestDto.name)
-                .address(createUserRequestDto.address)
-                .password(createUserRequestDto.password)
+                .name(createUserRequestDto.getName())
+                .address(createUserRequestDto.getAddress())
+                .password(createUserRequestDto.getPassword())
                 .build();
     }
 
     public UserResponseDto getUser(String id) {
-        UserResponseDto dto = new UserResponseDto(id,"주소","전화번호", "이메일");
+        User user = null;
+        UserResponseDto dto = UserResponseDto.from(user);
         return dto;
     }
 
