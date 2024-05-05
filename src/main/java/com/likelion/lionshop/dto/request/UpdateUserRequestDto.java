@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Getter //모든 필드의 Getter 메서드를 자동으로 생성해줍니다.
 public class UpdateUserRequestDto {
 
+    public Long id;
+
     public String name;
 
     public String address;

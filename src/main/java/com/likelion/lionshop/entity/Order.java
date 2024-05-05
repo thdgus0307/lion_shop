@@ -1,7 +1,6 @@
 package com.likelion.lionshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
 
     @Id // 기본값
@@ -37,5 +37,8 @@ public class Order {
         this.quantity = quantity;
         this.price = price;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }
