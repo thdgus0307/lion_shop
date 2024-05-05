@@ -16,7 +16,7 @@ import java.util.List;
 public class User {
 
     @Id // 기본값
-    private String id;          // 사용자 id
+    private Long id;          // 사용자 id
 
     private String name;        // 이름
 
@@ -29,7 +29,7 @@ public class User {
     private String email;       // 이메일
 
     @Builder
-    public User(String id, String name, String address, String password) {
+    public User(Long id, String name, String address, String password) {
         this.id = id;
         this.name = name;
         this.address = address;

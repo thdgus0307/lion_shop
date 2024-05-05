@@ -57,7 +57,7 @@ public class UserController {
     // 4. 사용자를 삭제하는 컨트롤러를 만듭니다.
     // 이때 log.info 이용하여 사용자의 ID를 출력해줍니다. return 값은 "사용자 삭제"입니다.
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable String id) {
+    public String deleteUser(@PathVariable Long id) {
         log.info("ID: {}", id);
         UserService.deleteUser(id);
 

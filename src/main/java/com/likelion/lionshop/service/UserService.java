@@ -4,6 +4,7 @@ package com.likelion.lionshop.service;
 import com.likelion.lionshop.dto.request.CreateUserRequestDto;
 import com.likelion.lionshop.dto.request.UpdateUserRequestDto;
 import com.likelion.lionshop.dto.response.UserResponseDto;
+import com.likelion.lionshop.entity.Order;
 import com.likelion.lionshop.entity.User;
 import com.likelion.lionshop.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -34,10 +35,12 @@ public class UserService {
 
         optionalUser.ifPresent(user -> {user.update(updateUserRequestDto.getName(), updateUserRequestDto.getAddress());
         });
+        User user = userRepository.findById(updateUserRequestDto.getId()).orElseThrow(
+                ()-> new IllegalArgumentException("상품이 존재하지 않습니다."));
 
     }
 
-    public static void deleteUser(String id) {
+    public static void deleteUser(Long id) {
         userRepository.deleteById(id);
 
     }
