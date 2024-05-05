@@ -1,20 +1,22 @@
 package com.likelion.lionshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user")
 public class User {
 
     @Id // 기본값
-    private String id;          // 사용자 id
+    private Long id;          // 사용자 id
 
     private String name;        // 이름
 
@@ -27,7 +29,7 @@ public class User {
     private String email;       // 이메일
 
     @Builder
-    public User(String id, String name, String address, String password) {
+    public User(Long id, String name, String address, String password) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -38,4 +40,7 @@ public class User {
         this.name = name;
         this.address = address;
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> order;
 }
