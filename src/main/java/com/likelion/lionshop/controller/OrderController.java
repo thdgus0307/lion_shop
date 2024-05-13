@@ -7,6 +7,7 @@ import com.likelion.lionshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class OrderController {
     // 3. 주문을 수정하는 컨트롤러를 만듭니다. 이때 return 값은 "주문 수정하기"입니다.
     //UpdateOrderRequestDto 클래스를 매개변수로 받습니다.
     @PutMapping()
-    public String updateOrder(@AuthenticationPrincipal String email,@RequestBody UpdateOrderRequestDto updateOrderRequestDto) {
+    public String updateOrder(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UpdateOrderRequestDto updateOrderRequestDto) {
         orderService.updateOrder(updateOrderRequestDto);
         return "주문 수정하기";
     }
