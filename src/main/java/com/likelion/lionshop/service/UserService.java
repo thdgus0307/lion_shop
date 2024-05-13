@@ -4,28 +4,30 @@ package com.likelion.lionshop.service;
 import com.likelion.lionshop.dto.request.CreateUserRequestDto;
 import com.likelion.lionshop.dto.request.UpdateUserRequestDto;
 import com.likelion.lionshop.dto.response.UserResponseDto;
-import com.likelion.lionshop.entity.Order;
 import com.likelion.lionshop.entity.User;
 import com.likelion.lionshop.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UserService {
-    private static UserRepository userRepository;
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void createUser(CreateUserRequestDto createUserRequestDto){
-        User user = User.builder()
-                .name(createUserRequestDto.getName())
-                .address(createUserRequestDto.getAddress())
-                .password(createUserRequestDto.getPassword())
-                .build();
+        User user = createUserRequestDto.toEntity(passwordEncoder);
         userRepository.save(user);
     }
 
-    public UserResponseDto getUser(String id) {
-        User user = null;
+    public UserResponseDto getUser(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
         UserResponseDto dto = UserResponseDto.from(user);
         return dto;
     }
@@ -40,8 +42,10 @@ public class UserService {
 
     }
 
-    public static void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+
+        userRepository.deleteById(user.getId());
 
     }
 

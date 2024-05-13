@@ -14,9 +14,10 @@ import lombok.NoArgsConstructor;
 public class Order {
 
     @Id // 기본값
-    private int orderId;    // 주문번호
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 생성
+    private Long Id;    // 주문번호
 
-    private String id;      // 주문자 id
+    private String email;      // 주문자 id
 
     private String name; // 제품명
 
@@ -25,8 +26,8 @@ public class Order {
     private int price;      // 가격
 
     @Builder
-    public Order(String id, String name, int quantity, int price) {
-        this.id = id;
+    public Order(String email, String name, int quantity, int price) {
+        this.email = email;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
