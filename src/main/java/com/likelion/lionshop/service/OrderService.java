@@ -4,8 +4,10 @@ import com.likelion.lionshop.dto.request.CreateOrderRequestDto;
 import com.likelion.lionshop.dto.request.UpdateOrderRequestDto;
 import com.likelion.lionshop.dto.response.OrderResponseDto;
 import com.likelion.lionshop.entity.Order;
+import com.likelion.lionshop.entity.User;
 import com.likelion.lionshop.repository.OrderRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -14,9 +16,10 @@ import java.util.List;
 
 @Service
 @Slf4j
-
+@RequiredArgsConstructor
 public class OrderService {
-    private OrderRepository orderRepository;
+
+    private final OrderRepository orderRepository;
 
     @Transactional
     public void createOrder(List<CreateOrderRequestDto> createOrderRequestDto) {
@@ -30,9 +33,9 @@ public class OrderService {
 
     }
 
-    public OrderResponseDto getOrder(int id) {
+    public OrderResponseDto getOrder(String email) {
         // repository 사용 전 임의의 OrderResponseDto 객체 생성하여 반환
-        OrderResponseDto dto = new OrderResponseDto(id, "사자인형", 10000, 3);
+        OrderResponseDto dto = new OrderResponseDto(1L, "사자인형", 10000, 3);
         return dto;
     }
 
@@ -52,9 +55,11 @@ public class OrderService {
 
     }
 
-    public void deleteOrder(int id) {
+    public void deleteOrder(String email) {
         // repository를 사용하여 삭제
-        orderRepository.deleteById(id);
+        Order order = orderRepository.findByEmail(email).orElseThrow();
+
+        orderRepository.deleteById(order.getId());
     }
 
 

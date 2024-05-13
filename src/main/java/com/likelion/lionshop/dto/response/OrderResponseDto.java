@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class OrderResponseDto {
 
-    private int orderId;
+    private Long orderId;
 
     private String name;
 
@@ -23,7 +23,7 @@ public class OrderResponseDto {
 
     public static OrderResponseDto from(Order order){
         return OrderResponseDto.builder()
-                .orderId(order.getOrderId())
+                .orderId(order.getId())
                 .name(order.getName())
                 .quantity(order.getQuantity())
                 .price(order.getPrice())
