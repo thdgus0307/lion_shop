@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/like_lion?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: lion
+    url: jdbc:mysql://lion-shop.cj0easogs552.ap-northeast-2.rds.amazonaws.com:3306/like_lion?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: bsh050307**
   jwt:
     # HS512 ????? ??? ??? ??? 512bit, ? 64byte ??? secret key? ??
     secret: o2eh1qu7yo9gthdh78u2q1o7hyua2r7uyr2q9yi7lionshop
