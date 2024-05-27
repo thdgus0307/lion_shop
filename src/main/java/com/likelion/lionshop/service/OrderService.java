@@ -41,17 +41,11 @@ public class OrderService {
 
     public void updateOrder(UpdateOrderRequestDto updateOrderRequestDto) {
         //repository를 사용하여 조회해서 Order Entiity 받아오기
-        Optional<Order> optionalOrder = orderRepository.findById(updateOrderRequestDto.getId());
-
-        optionalOrder.ifPresent(order -> {
-            order.update(updateOrderRequestDto.getName(), updateOrderRequestDto.getQuantity(), updateOrderRequestDto.getPrice());
-            orderRepository.save(order);
-
-       });
         Order order = orderRepository.findById(updateOrderRequestDto.getId()).orElseThrow(
                 ()-> new IllegalArgumentException("상품이 존재하지 않습니다."));
 
-
+        order.update(updateOrderRequestDto.getName(), updateOrderRequestDto.getQuantity(), updateOrderRequestDto.getPrice());
+        orderRepository.save(order);
 
     }
 
