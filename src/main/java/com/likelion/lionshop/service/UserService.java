@@ -38,7 +38,7 @@ public class UserService {
         optionalUser.ifPresent(user -> {user.update(updateUserRequestDto.getName(), updateUserRequestDto.getAddress());
         });
         User user = userRepository.findById(updateUserRequestDto.getId()).orElseThrow(
-                ()-> new IllegalArgumentException("상품이 존재하지 않습니다."));
+                ()-> new IllegalArgumentException("사용자가 존재하지 않습니다."));
 
     }
 
