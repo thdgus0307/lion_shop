@@ -1,7 +1,7 @@
 package com.likelion.lionshop.dto.request;
 
 import com.likelion.lionshop.entity.User;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class CreateUserRequestDto {
     @Size(min = 1, max = 20, message = "이름은 1~20 글자여야 합니다.")
     public String name;
 
-    @NotNull(message = "email은 필수값입니다.")
+    @NotBlank(message = "email은 필수값입니다.")
     public String email;
 
     @Size(min = 8, message = "비밀번호는 8자리 이상이어야 합니다.")

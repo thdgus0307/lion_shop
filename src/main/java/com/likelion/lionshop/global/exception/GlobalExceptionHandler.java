@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
      *  주로 @RequestBody, @RequestPart 어노테이션에서 발생
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)//
-    protected ResponseEntity<String> handleIllegalArgumentException(MethodArgumentNotValidException e) {
+    protected ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         log.error("handleIllegalArgumentException", e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
